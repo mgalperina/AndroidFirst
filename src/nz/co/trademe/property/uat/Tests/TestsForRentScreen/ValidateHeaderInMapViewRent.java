@@ -1,4 +1,4 @@
-package nz.co.trademe.property.uat.Tests;
+package nz.co.trademe.property.uat.Tests.TestsForRentScreen;
 import nz.co.trademe.property.uat.Screens.*;
 import io.appium.java_client.AppiumDriver;
 import nz.co.trademe.property.uat.Utilities.AppiumDriverBuilder;
@@ -8,7 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import java.net.MalformedURLException;
 
-public class SearchForRentWaikatoTo500Apartment {
+public class ValidateHeaderInMapViewRent {
+
     AppiumDriver driver;
 
     @Before
@@ -19,20 +20,22 @@ public class SearchForRentWaikatoTo500Apartment {
     }
 
     @Test
-    public void searchForSaleWaikatoTo500Apartment() {
+    public void validateHeaderInMapViewRent() {
 
         SearchForSaleScreen defaultSearch = new SearchForSaleScreen(driver);
         defaultSearch.clickToRentTab();
 
         SearchForRentScreen searchForRentScreen = new SearchForRentScreen(driver);
-        searchForRentScreen.selectLocation("Waikato");
-        searchForRentScreen.selectToPrice("$500");
-        searchForRentScreen.selectPropertyTypeForRent("Apartment");
         searchForRentScreen.clickButtonSearch();
 
-//        Assert.assertTrue(searchForRentScreen.areSearchResultsLoaded());
-//        Assert.assertTrue(searchForRentScreen.areSearchResultsLoaded());
-//        Assert.assertTrue(searchForRentScreen.areSearchResultsLoaded());
+        RentResultsScreen rentResultsScreen = new RentResultsScreen(driver);
+        rentResultsScreen.clickMapTabRentResults();
+
+        Assert.assertTrue(rentResultsScreen.isHeaderCorrect());
+
+
+        //WebDriverWait wait = new WebDriverWait(driver, 10);
+        //wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Sorted by")));
 
     }
 

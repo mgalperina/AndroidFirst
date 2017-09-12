@@ -23,6 +23,15 @@ public class SearchForSaleScreen {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='TO RENT']")
     public MobileElement toRentScreenButton;
 
+    @AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index='5']")
+    public MobileElement openHomesToggle;
+
+    @AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index='1']")
+    public MobileElement priceField;
+
+    @AndroidFindBy(id = "numberPicker")
+    public MobileElement fromPriceSelection;
+
 
 
     public void clickButtonSearch()
@@ -35,10 +44,22 @@ public class SearchForSaleScreen {
     public void clickToRentTab() { toRentScreenButton.click();}
 
 
-    /*public boolean isStartingPageOpened() {
+    public boolean isDefaultTabOpen() {
 
-        return textAboutFB.getText().toString().contains("We do NOT post anything to Facebook");
-    }*/
+        return openHomesToggle.isDisplayed();
+    }
+
+    public void selectPriceFrom(String fromPrice)
+
+    {
+        priceField.click();
+        fromPriceSelection.sendKeys(fromPrice);
+    }
+
+    public void switchOpenHomesToggle()
+    {
+        openHomesToggle.click();
+    }
 
 
 

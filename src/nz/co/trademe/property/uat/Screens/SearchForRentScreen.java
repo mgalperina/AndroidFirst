@@ -22,7 +22,7 @@ public class SearchForRentScreen {
     public MobileElement locationSelectionButton;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Waikato']")
-    public MobileElement locationWaikatoButton;
+    public MobileElement regionSelectionButton;
 
     @AndroidFindBy(id = "action_done")
     public MobileElement locationDoneButton;
@@ -30,8 +30,8 @@ public class SearchForRentScreen {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Rent' + 'per' + 'week']")
     public MobileElement rentPerWeekField;
 
-    @AndroidFindBy(className = "android.widget.RelativeLayout")
-    public MobileElement to500PriceSelection;
+    @AndroidFindBy(id = "numberPickerMax")
+    public MobileElement toPriceSelection;
 
     @AndroidFindBy(id = "md_buttonDefaultPositive")
     public MobileElement okButtonRentPerWeek;
@@ -39,11 +39,17 @@ public class SearchForRentScreen {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Property' + 'type']")
     public MobileElement propertyTypeField;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Apartment']")
-    public MobileElement apartmentCheckBox;
+    @AndroidFindBy(xpath = "//android.widget.LinearLayout[@index='2']")
+    public MobileElement propertyTypeCheckBox;
 
     @AndroidFindBy(id = "md_buttonDefaultPositive")
     public MobileElement okButtonPropertyType;
+
+    @AndroidFindBy(xpath = "//android.widget.Switch[@index='1']")
+    public MobileElement petsOkToggle;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='FOR SALE']")
+    public MobileElement forSaleTab;
 
 
 
@@ -53,25 +59,36 @@ public class SearchForRentScreen {
         searchForRentButton.click();
     }
 
-    public void selectWaikatoLocation(){
+    public void selectLocation(String region)
+    {
 
         locationSelectionButton.click();
-        locationWaikatoButton.click();
+        regionSelectionButton.sendKeys(region);
         locationDoneButton.click();
     }
 
-    public void selectTo500Price() {
+    public void selectToPrice(String toPrice) {
 
         rentPerWeekField.click();
-        to500PriceSelection.sendKeys("$500");
+        toPriceSelection.sendKeys(toPrice);
         okButtonRentPerWeek.click();
     }
 
-    public void selectApartmentPropertyTypeForRent(){
-
+    public void selectPropertyTypeForRent(String propertyType)
+    {
         propertyTypeField.click();
-        apartmentCheckBox.click();
+        propertyTypeCheckBox.sendKeys(propertyType);
         okButtonPropertyType.click();
+    }
+
+    public boolean isRentTabOpen()
+    {
+        return petsOkToggle.isDisplayed();
+    }
+
+    public void clickForSaleTab()
+    {
+        forSaleTab.click();
     }
 
 }

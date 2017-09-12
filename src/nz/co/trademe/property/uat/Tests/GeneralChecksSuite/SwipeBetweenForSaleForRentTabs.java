@@ -1,4 +1,4 @@
-package nz.co.trademe.property.uat.Tests;
+package nz.co.trademe.property.uat.Tests.GeneralChecksSuite;
 import nz.co.trademe.property.uat.Screens.*;
 import io.appium.java_client.AppiumDriver;
 import nz.co.trademe.property.uat.Utilities.AppiumDriverBuilder;
@@ -6,11 +6,9 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 
-public class DefaultSearchForSale {
+public class SwipeBetweenForSaleForRentTabs {
 
     AppiumDriver driver;
 
@@ -22,14 +20,18 @@ public class DefaultSearchForSale {
     }
 
     @Test
-    public void defaultSearchForSale() {
+    public void swipeBetweenForSaleForRentTabs() {
 
         SearchForSaleScreen defaultSearch = new SearchForSaleScreen(driver);
-        defaultSearch.clickButtonSearch();
+        defaultSearch.clickToRentTab();
 
-        SaleResultsScreen saleResults = new SaleResultsScreen(driver);
+        SearchForRentScreen searchForRentScreen = new SearchForRentScreen(driver);
+        Assert.assertTrue(searchForRentScreen.isRentTabOpen());
 
-        Assert.assertTrue(saleResults.areSearchResultsLoaded());
+        searchForRentScreen.clickForSaleTab();
+        Assert.assertTrue(defaultSearch.isDefaultTabOpen());
+
+
 
         //WebDriverWait wait = new WebDriverWait(driver, 10);
         //wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Sorted by")));
