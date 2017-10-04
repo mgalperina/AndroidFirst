@@ -19,7 +19,7 @@ public class SaleResultsScreen {
     @AndroidFindBy(id = "count_textview")
     public MobileElement saleResultsTitle;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Properties for sale']")
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Properties for sale\")")
     public MobileElement saleResultsHeader;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Map']")
@@ -44,7 +44,7 @@ public class SaleResultsScreen {
         return saleResultsTitle.getText().toString().contains("Sorted by");
     }
 
-    public boolean isHeaderCorrect()
+    public boolean isSaleHeaderCorrect()
     {
         return saleResultsHeader.getText().toString().equals("Properties for sale");
     }

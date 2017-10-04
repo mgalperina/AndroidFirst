@@ -25,7 +25,7 @@ public class SearchForRentWaikatoTo500Apartment {
         defaultSearch.clickToRentTab();
 
         SearchForRentScreen searchForRentScreen = new SearchForRentScreen(driver);
-        searchForRentScreen.selectLocation("Waikato");
+        searchForRentScreen.selectLocation("Auckland");
         searchForRentScreen.selectToPrice("$500");
         searchForRentScreen.selectPropertyTypeForRent("Apartment");
         searchForRentScreen.clickButtonSearch();

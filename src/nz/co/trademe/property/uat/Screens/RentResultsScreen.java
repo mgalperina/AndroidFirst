@@ -19,18 +19,19 @@ public class RentResultsScreen {
         @AndroidFindBy(id = "count_textview")
         public MobileElement rentResultsTitle;
 
-        @AndroidFindBy(xpath = "//android.widget.TextView[@text='Properties for rent']")
-        public MobileElement rentResultsHeader;
-
         @AndroidFindBy(xpath = "//android.widget.TextView[@text='Map']")
         public MobileElement mapTabButtonRentResults;
 
+       @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Properties for rent\")")
+       public MobileElement rentResultsHeader;
 
 
-        public boolean isHeaderCorrect()
-        {
-            return rentResultsHeader.getText().toString().equals("Properties for rent");
-        }
+
+
+    public boolean isRentalsHeaderCorrect()
+    {
+        return rentResultsHeader.getText().toString().equals("Properties for rent");
+    }
 
         public void clickMapTabRentResults()
         {

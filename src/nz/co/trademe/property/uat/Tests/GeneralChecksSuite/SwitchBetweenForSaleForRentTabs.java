@@ -8,9 +8,9 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -18,8 +18,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
+import java.util.UUID;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class PullToRefreshForSaleResults {
+public class SwitchBetweenForSaleForRentTabs {
 
     AppiumDriver driver;
     Dimension size;
@@ -34,27 +38,30 @@ public class PullToRefreshForSaleResults {
     }
 
     @Test
-    public void pullToRefreshForSaleResults() {
+    public void switchBetweenForSaleForRentTabs() {
 
         SearchForSaleScreen defaultSearch = new SearchForSaleScreen(driver);
-        defaultSearch.clickButtonSearch();
 
-        SaleResultsScreen saleResults = new SaleResultsScreen(driver);
+        defaultSearch.clickToRentTab();
 
-        size = driver.manage().window().getSize();
-        System.out.println(size);
-
-        int starty = (int) (size.height * 0.90);
-        int endy = (int) (size.height * 0.70);
-        int startx = size.width / 2;
-        System.out.println("starty = " + starty + " ,endy = " + endy + ", startx = " + startx);
-
-        new TouchAction(driver).press(startx, starty).waitAction(Duration.ofMillis(3)).moveTo(0, endy).release().perform();
-
+        SearchForRentScreen searchForRentScreen = new SearchForRentScreen(driver);
+        Assert.assertTrue(searchForRentScreen.isRentTabOpen());
         takeScreenShot();
 
-        //HOW TO ASSERT A SPINNER???
-//        Assert.assertTrue(defaultSearch.isDefaultTabOpen());
+        searchForRentScreen.clickForSaleTab();
+        Assert.assertTrue(defaultSearch.isDefaultTabOpen());
+        takeScreenShot();
+
+//        size = driver.manage().window().getSize();
+//        System.out.println(size);
+//
+//        int starty = size.height / 3;
+//        int starty = (int) (size.height * 0.43);
+//        int startx = (int) (size.width * 0.80);
+//        int endx = (int) (size.width * 0.20);
+//        System.out.println("startx = " + startx + " ,endx = " + endx + ", starty = " + starty);
+//
+//        new TouchAction(driver).press(startx, starty).waitAction(Duration.ofMillis(1)).moveTo(startx, endx).release().perform();
     }
 
     public void takeScreenShot()

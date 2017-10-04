@@ -28,7 +28,7 @@ public class ValidateHeaderInMapViewSale {
         SaleResultsScreen saleResults = new SaleResultsScreen(driver);
         saleResults.clickMapTabSaleResults();
 
-        Assert.assertTrue(saleResults.isHeaderCorrect());
+        Assert.assertTrue(saleResults.isSaleHeaderCorrect());
 
 
         //WebDriverWait wait = new WebDriverWait(driver, 10);

@@ -6,6 +6,10 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.net.MalformedURLException;
 
 public class ValidateHeaderInListViewSale {
@@ -26,12 +30,10 @@ public class ValidateHeaderInListViewSale {
         defaultSearch.clickButtonSearch();
 
         SaleResultsScreen saleResults = new SaleResultsScreen(driver);
+        Assert.assertTrue(saleResults.isSaleHeaderCorrect());
 
-        Assert.assertTrue(saleResults.isHeaderCorrect());
 
 
-        //WebDriverWait wait = new WebDriverWait(driver, 10);
-        //wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Sorted by")));
 
     }
 

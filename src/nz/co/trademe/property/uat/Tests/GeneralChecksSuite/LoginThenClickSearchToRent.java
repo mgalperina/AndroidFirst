@@ -1,14 +1,16 @@
-package nz.co.trademe.property.uat.Tests.TestsForRentScreen;
-import nz.co.trademe.property.uat.Screens.*;
+package nz.co.trademe.property.uat.Tests.GeneralChecksSuite;
+
 import io.appium.java_client.AppiumDriver;
+import nz.co.trademe.property.uat.Screens.*;
 import nz.co.trademe.property.uat.Utilities.AppiumDriverBuilder;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.net.MalformedURLException;
 
-public class ValidateHeaderInMapViewRent {
+public class LoginThenClickSearchToRent {
 
     AppiumDriver driver;
 
@@ -20,22 +22,25 @@ public class ValidateHeaderInMapViewRent {
     }
 
     @Test
-    public void validateHeaderInMapViewRent() {
+    public void loginThenClickSearchToRent() {
 
-        SearchForSaleScreen defaultSearch = new SearchForSaleScreen(driver);
-        defaultSearch.clickToRentTab();
+        SearchForSaleScreen defaultScreen = new SearchForSaleScreen(driver);
+        defaultScreen.openNavigationDrawer();
+
+        NavigationDrawer navDrawer = new NavigationDrawer(driver);
+        navDrawer.openMyAccountToLogIn();
+
+        LoginScreen loginScreen = new LoginScreen(driver);
+        loginScreen.logIn("mariia.galperina@trademe.co.nz", "BumbleBee");
+
+        navDrawer.clickSearchButtonFromNavDrawer();
+        defaultScreen.clickToRentTab();
 
         SearchForRentScreen searchForRentScreen = new SearchForRentScreen(driver);
         searchForRentScreen.clickButtonSearch();
 
         RentResultsScreen rentResultsScreen = new RentResultsScreen(driver);
-        rentResultsScreen.clickMapTabRentResults();
-
         Assert.assertTrue(rentResultsScreen.isRentalsHeaderCorrect());
-
-
-        //WebDriverWait wait = new WebDriverWait(driver, 10);
-        //wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Sorted by")));
 
     }
 
@@ -44,5 +49,6 @@ public class ValidateHeaderInMapViewRent {
     public void quit() {
 
         driver.quit();
+
     }
 }

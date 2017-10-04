@@ -28,13 +28,18 @@ public class ValidateHeaderInListViewRent {
         SearchForRentScreen searchForRentScreen = new SearchForRentScreen(driver);
         searchForRentScreen.clickButtonSearch();
 
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+//        WebDriverWait wait = new WebDriverWait(driver, 5);
+//        wait.until(ExpectedConditions.(MobileElement, "rentToolbar"));
+
+
         RentResultsScreen rentResultsScreen = new RentResultsScreen(driver);
-
-        Assert.assertTrue(rentResultsScreen.isHeaderCorrect());
-
-
-        //WebDriverWait wait = new WebDriverWait(driver, 10);
-        //wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Sorted by")));
+        Assert.assertTrue(rentResultsScreen.isRentalsHeaderCorrect());
 
     }
 
@@ -43,5 +48,6 @@ public class ValidateHeaderInListViewRent {
     public void quit() {
 
         driver.quit();
+
     }
 }

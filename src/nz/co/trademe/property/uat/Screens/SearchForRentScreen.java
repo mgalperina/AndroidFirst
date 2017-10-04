@@ -1,5 +1,6 @@
 package nz.co.trademe.property.uat.Screens;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.FindsByAndroidUIAutomator;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -15,19 +16,22 @@ public class SearchForRentScreen {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='SEARCH']")
+    @AndroidFindBy(id = "search_button_container")
     public MobileElement searchForRentButton;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Location']")
     public MobileElement locationSelectionButton;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Waikato']")
-    public MobileElement regionSelectionButton;
+//    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Waikato']")
+//    public MobileElement regionSelectionButton;
+
+    @AndroidFindBy(id = "list")
+    public MobileElement regionSelectionList;
 
     @AndroidFindBy(id = "action_done")
     public MobileElement locationDoneButton;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Rent' + 'per' + 'week']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Rent per week']")
     public MobileElement rentPerWeekField;
 
     @AndroidFindBy(id = "numberPickerMax")
@@ -45,10 +49,10 @@ public class SearchForRentScreen {
     @AndroidFindBy(id = "md_buttonDefaultPositive")
     public MobileElement okButtonPropertyType;
 
-    @AndroidFindBy(xpath = "//android.widget.Switch[@index='1']")
+    @AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index = '5']")
     public MobileElement petsOkToggle;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='FOR SALE']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='For sale']")
     public MobileElement forSaleTab;
 
 
@@ -63,7 +67,7 @@ public class SearchForRentScreen {
     {
 
         locationSelectionButton.click();
-        regionSelectionButton.sendKeys(region);
+        regionSelectionList.sendKeys(region);
         locationDoneButton.click();
     }
 
