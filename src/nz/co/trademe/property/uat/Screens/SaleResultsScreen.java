@@ -3,8 +3,10 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class SaleResultsScreen {
 
@@ -26,18 +28,36 @@ public class SaleResultsScreen {
     public MobileElement mapTabButtonSaleResults;
 
     @AndroidFindBy(id = "search_result_cell")
-    public MobileElement CardView;
+    public MobileElement cardView;
 
     @AndroidFindBy(id = "content_view")
     private List<MobileElement> saleSearchResults;
+
+    @AndroidFindBy(id = "nz.co.trademe.property.uat:id/moreImageView")
+    public MobileElement overflowMenuSaleCard;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Add to Watchlist\")")
+    public MobileElement overflowAddtoWL;
+
+    @AndroidFindBy(id = "nz.co.trademe.property.uat:id/triangleImageView")
+    public MobileElement wlIconOnCard;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Remove from Watchlist\")")
+    public MobileElement removeFromWLOverflow;
+
+    @AndroidFindBy(id = "nz.co.trademe.property.uat:id/mainImageView")
+    public MobileElement listingGeneralField;
+
+    @AndroidFindBy(className = "android.widget.ImageButton")
+    public MobileElement backButtonSearchResults;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Hide listing\")")
+    public MobileElement hideListingButton;
 
     public int resultsCount()
     {
         return saleSearchResults.size();
     }
-
-
-
 
     public boolean areSearchResultsLoaded()
     {
@@ -59,6 +79,25 @@ public class SaleResultsScreen {
         return saleSearchResults.get(index);
     }
 
+    public void openOverflowMenu() {overflowMenuSaleCard.click();}
+
+    public void addToWL() {overflowAddtoWL.click();}
+
+    public boolean isWLIconDisplayed() {
+        return wlIconOnCard.isDisplayed();
+    }
+
+    public void removeFromWLViaOverflow()
+    {
+        overflowMenuSaleCard.click();
+        removeFromWLOverflow.click();
+    }
+
+    public void openFirstListing()
+    {
+        listingGeneralField.click();
+    }
+
     public void pullToRefresh()
     {
 
@@ -71,5 +110,15 @@ public class SaleResultsScreen {
 //        js.executeScript("mobile: scroll", scrollObject);
     }
 
+   public void goBackToDefault()
+   {
+       backButtonSearchResults.click();
+   }
+
+   public void hideListing()
+   {
+       overflowMenuSaleCard.click();
+       hideListingButton.click();
+   }
 
 }

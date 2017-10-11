@@ -41,6 +41,19 @@ public class LoginScreen {
         return logInPageLogo.isDisplayed();
     }
 
+    public void enterCredentials(String email, String password)
+    {
+        emailField.click();
+        emailField.sendKeys(email);
+        passwordField.click();
+        passwordField.sendKeys(password);
+    }
+
+    public void clickLogInButton()
+    {
+        logInButton.click();
+    }
+
 }
 
 

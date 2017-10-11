@@ -1,7 +1,7 @@
 package nz.co.trademe.property.uat.Tests.TestsForSaleScreen;
 
 import com.applitools.eyes.BatchInfo;
-import com.applitools.eyes.Eyes;
+import com.applitools.eyes.selenium.Eyes;
 import io.appium.java_client.AppiumDriver;
 import nz.co.trademe.property.uat.Screens.LoginScreen;
 import nz.co.trademe.property.uat.Screens.NavigationDrawer;
@@ -15,10 +15,11 @@ import org.junit.Test;
 import java.awt.image.BufferedImage;
 import java.net.MalformedURLException;
 
-public class ValidateForSaleUI {
+public class ValidateForSaleUIApplitools {
 
     AppiumDriver driver;
     Eyes eyes = new Eyes();
+    BufferedImage img;
     BatchInfo batch = new BatchInfo("nz.co.trademe.property.uat");
     private static String applitoolsKey = "ot2JU3SX23eeTkHdRGGqin94a3uFVhUF1UjRSu0h5zk110";
 
@@ -37,10 +38,9 @@ public class ValidateForSaleUI {
         eyes.setBatch(batch);
 
         SearchForSaleScreen defaultScreen = new SearchForSaleScreen(driver);
-        eyes.checkImage("Initial");
 
-        eyes.checkImage("After");
-
+        eyes.open(driver, "TMProperty", "TestSearchUI");
+        eyes.checkWindow("Initial");
         eyes.close();
     }
 

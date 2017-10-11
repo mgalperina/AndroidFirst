@@ -49,6 +49,7 @@ public class PullToRefreshForSaleResults {
         int startx = size.width / 2;
         System.out.println("starty = " + starty + " ,endy = " + endy + ", startx = " + startx);
 
+//THIS IMPLEMENTATION IS NOT WORKING!!!
         new TouchAction(driver).press(startx, starty).waitAction(Duration.ofMillis(3)).moveTo(0, endy).release().perform();
 
         takeScreenShot();

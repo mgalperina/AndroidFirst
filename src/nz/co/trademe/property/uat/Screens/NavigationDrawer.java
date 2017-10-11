@@ -22,8 +22,26 @@ public class NavigationDrawer {
     @AndroidFindBy(uiAutomator = "new UiSelector().text(\"My account\")")
     public MobileElement myAccountFieldLoggedIn;
 
-    @AndroidFindBy(id = "nz.co.trademe.property.uat:id/textViewNavItemLink")
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Search\")")
     public MobileElement searchButtonNavDrawer;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Insights\")")
+    public MobileElement insightsButtonNavDrawer;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Watchlist\")")
+    public MobileElement watchlistButtonNavDrawer;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"About\")")
+    public MobileElement aboutButtonNavDrawer;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Send app feedback\")")
+    public MobileElement sendFeedbackButtonNavDrawer;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Favourites\")")
+    public MobileElement favouritesButtonNavDrawer;
+
+    @AndroidFindBy(id = "")
+    public MobileElement gmailSubject;
 
     public void openMyAccountToLogIn()
     {
@@ -43,6 +61,43 @@ public class NavigationDrawer {
     }
 
     public boolean isLoggedOut() { return myAccountFieldLoggedOut.getText().toString().contains("to Trade Me");}
+
+    public void openSearchScreenFromNavDrawer()
+    {
+        searchButtonNavDrawer.click();
+    }
+
+    public void openInsightsScreenFromNavDrawer()
+    {
+        insightsButtonNavDrawer.click();
+    }
+
+    public void openWLScreenFromNavDrawer()
+    {
+        watchlistButtonNavDrawer.click();
+    }
+
+    public void openAboutScreenFromNavDrawer()
+    {
+        aboutButtonNavDrawer.click();
+    }
+
+    public void openFavsScreenFromNavDrawer()
+    {
+        favouritesButtonNavDrawer.click();
+    }
+
+    public void openFeedbackScreenFromNavDrawer()
+    {
+        sendFeedbackButtonNavDrawer.click();
+    }
+
+    public boolean isGmailOpen()
+    {
+        return gmailSubject.isDisplayed();
+    }
+
+
 
 
 

@@ -57,8 +57,9 @@ public class SearchForSaleScreen {
     @AndroidFindBy(id = "nz.co.trademe.property.uat:id/md_customViewFrame")
     public MobileElement price;
 
-    @AndroidFindBy(id = "nz.co.trademe.property.uat:id/md_customViewFrame")
-    public MobileElement fieldToTapToGetRidOfNavDrawer;
+    @AndroidFindBy(id = "nz.co.trademe.property.uat:id/watchlist_navigation")
+    public MobileElement wlTab;
+
 
 //@id = 'nz.co.trademe.property.uat:id/md_customViewFrame'
 
@@ -102,5 +103,12 @@ public class SearchForSaleScreen {
         priceField.click();
         okButtonPrice.click();
     }
+
+    public void goToWLTab()
+    {
+        wlTab.click();
+    }
+
+
 
 }

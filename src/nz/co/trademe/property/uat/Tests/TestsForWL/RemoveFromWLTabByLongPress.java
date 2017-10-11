@@ -1,9 +1,10 @@
 package nz.co.trademe.property.uat.Tests.TestsForWL;
-
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.TouchAction;
 import nz.co.trademe.property.uat.Screens.LoginScreen;
 import nz.co.trademe.property.uat.Screens.SaleResultsScreen;
 import nz.co.trademe.property.uat.Screens.SearchForSaleScreen;
+import nz.co.trademe.property.uat.Screens.WatchlistScreen;
 import nz.co.trademe.property.uat.Utilities.AppiumDriverBuilder;
 import org.junit.After;
 import org.junit.Assert;
@@ -12,7 +13,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import java.net.MalformedURLException;
 
-public class AddToWLThenRemoveViaOverflow {
+public class RemoveFromWLTabByLongPress {
 
     AppiumDriver driver;
 
@@ -24,7 +25,7 @@ public class AddToWLThenRemoveViaOverflow {
     }
 
     @Test
-    public void addToWLThenRemoveViaOverflow() {
+    public void removeFromWLTabByLongPress() {
 
         SearchForSaleScreen defaultSearch = new SearchForSaleScreen(driver);
         defaultSearch.clickButtonSearch();
@@ -38,9 +39,16 @@ public class AddToWLThenRemoveViaOverflow {
 
         Assert.assertTrue(saleResults.isWLIconDisplayed());
 
-        saleResults.removeFromWLViaOverflow();
+        saleResults.goBackToDefault();
+        defaultSearch.goToWLTab();
 
-        Assert.assertTrue(driver.findElements(By.id("nz.co.trademe.property.uat:id/triangleImageView")).size() < 1);
+        TouchAction action = new TouchAction(driver);
+        action.longPress(driver.findElement(By.id("nz.co.trademe.property.uat:id/imageview_main"))).release().perform();
+
+        WatchlistScreen wlScreen = new WatchlistScreen(driver);
+        wlScreen.deleteFromWL();
+
+        Assert.assertTrue(wlScreen.isThereAnyPropertyWatchlisted());
 
     }
 

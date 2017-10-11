@@ -1,18 +1,15 @@
-package nz.co.trademe.property.uat.Tests.TestsForWL;
+package nz.co.trademe.property.uat.Tests.TestsForHiding;
 
 import io.appium.java_client.AppiumDriver;
-import nz.co.trademe.property.uat.Screens.LoginScreen;
-import nz.co.trademe.property.uat.Screens.SaleResultsScreen;
-import nz.co.trademe.property.uat.Screens.SearchForSaleScreen;
+import nz.co.trademe.property.uat.Screens.*;
 import nz.co.trademe.property.uat.Utilities.AppiumDriverBuilder;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import java.net.MalformedURLException;
 
-public class AddToWLThenRemoveViaOverflow {
+public class HideListingBeingLoggedOut {
 
     AppiumDriver driver;
 
@@ -24,24 +21,30 @@ public class AddToWLThenRemoveViaOverflow {
     }
 
     @Test
-    public void addToWLThenRemoveViaOverflow() {
+    public void hideListingBeingLoggedOut() {
 
         SearchForSaleScreen defaultSearch = new SearchForSaleScreen(driver);
         defaultSearch.clickButtonSearch();
 
         SaleResultsScreen saleResults = new SaleResultsScreen(driver);
-        saleResults.openOverflowMenu();
-        saleResults.addToWL();
+        saleResults.hideListing();
+
+        saleResults.goBackToDefault();
+        defaultSearch.openNavigationDrawer();
+
+        NavigationDrawer navdrawer = new NavigationDrawer(driver);
+        navdrawer.openMyAccountToLogIn();
 
         LoginScreen loginScreen = new LoginScreen(driver);
         loginScreen.logIn("mariia.galperina@trademe.co.nz", "BumbleBee");
 
-        Assert.assertTrue(saleResults.isWLIconDisplayed());
+        navdrawer.openMyAccountScreenWhileLoggedIn();
 
-        saleResults.removeFromWLViaOverflow();
+        MyAccountScreenLoggedIn myAcc = new MyAccountScreenLoggedIn(driver);
+        Assert.assertTrue(myAcc.isHiddenPropertyThere());
 
-        Assert.assertTrue(driver.findElements(By.id("nz.co.trademe.property.uat:id/triangleImageView")).size() < 1);
 
+        myAcc.restoreHiddenProperties();
     }
 
     @After

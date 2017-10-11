@@ -9,10 +9,9 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import java.net.MalformedURLException;
 
-public class AddToWLThenRemoveViaOverflow {
+public class AddToWLViaOverflow {
 
     AppiumDriver driver;
 
@@ -24,7 +23,7 @@ public class AddToWLThenRemoveViaOverflow {
     }
 
     @Test
-    public void addToWLThenRemoveViaOverflow() {
+    public void addToWLViaOverflow() {
 
         SearchForSaleScreen defaultSearch = new SearchForSaleScreen(driver);
         defaultSearch.clickButtonSearch();
@@ -39,8 +38,6 @@ public class AddToWLThenRemoveViaOverflow {
         Assert.assertTrue(saleResults.isWLIconDisplayed());
 
         saleResults.removeFromWLViaOverflow();
-
-        Assert.assertTrue(driver.findElements(By.id("nz.co.trademe.property.uat:id/triangleImageView")).size() < 1);
 
     }
 
