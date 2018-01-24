@@ -3,8 +3,14 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import org.apache.xerces.impl.xs.identity.Selector;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -18,7 +24,7 @@ public class SaleResultsScreen {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    @AndroidFindBy(id = "count_textview")
+    @AndroidFindBy(id = "nz.co.trademe.property.uat:id/countTextView")
     public MobileElement saleResultsTitle;
 
     @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Properties for sale\")")
@@ -53,6 +59,9 @@ public class SaleResultsScreen {
 
     @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Hide listing\")")
     public MobileElement hideListingButton;
+
+    @AndroidFindBy(id = "nz.co.trademe.property.uat:id/videoIconImageView")
+    public MobileElement videoIconOnCard;
 
     public int resultsCount()
     {
@@ -120,5 +129,23 @@ public class SaleResultsScreen {
        overflowMenuSaleCard.click();
        hideListingButton.click();
    }
+
+    public static HashMap getScrollStartandEndElements(AppiumDriver driver) {
+        Dimension dimensions = driver.manage().window().getSize();
+        System.out.println(dimensions);
+        Double screenHeightStart = dimensions.getHeight() * 0.5;
+        HashMap scrollHash = new HashMap<>();
+        Integer scrollStart = screenHeightStart.intValue();
+        scrollHash.put("start", scrollStart);
+        Double screenHeightEnd = dimensions.getHeight() * 0.2;
+        Integer scrollEnd = screenHeightEnd.intValue();
+        scrollHash.put("end", scrollEnd);
+
+        return scrollHash;
+
+    }
+
+
+
 
 }

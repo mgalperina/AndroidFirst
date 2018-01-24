@@ -1,10 +1,10 @@
-package nz.co.trademe.property.uat.Tests.TestsForWL;
+package nz.co.trademe.property.uat.Tests.TestsForListingPage;
+
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.TouchAction;
+import nz.co.trademe.property.uat.Screens.ListingDetailsScreen;
 import nz.co.trademe.property.uat.Screens.LoginScreen;
 import nz.co.trademe.property.uat.Screens.SaleResultsScreen;
 import nz.co.trademe.property.uat.Screens.SearchForSaleScreen;
-import nz.co.trademe.property.uat.Screens.WatchlistScreen;
 import nz.co.trademe.property.uat.Utilities.AppiumDriverBuilder;
 import org.junit.After;
 import org.junit.Assert;
@@ -16,8 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 
-public class RemoveFromWLTabByLongPress {
-
+public class AddNoteThenEditIt {
     AppiumDriver driver;
 
     @Before
@@ -28,7 +27,7 @@ public class RemoveFromWLTabByLongPress {
     }
 
     @Test
-    public void removeFromWLTabByLongPress() {
+    public void addNoteThenEditIt() {
 
         SearchForSaleScreen defaultSearch = new SearchForSaleScreen(driver);
         defaultSearch.clickButtonSearch();
@@ -37,28 +36,22 @@ public class RemoveFromWLTabByLongPress {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("nz.co.trademe.property.uat:id/moreImageView")));
 
         SaleResultsScreen saleResults = new SaleResultsScreen(driver);
-        saleResults.openOverflowMenu();
-        saleResults.addToWL();
+        saleResults.openFirstListing();
+
+        ListingDetailsScreen listingDetails = new ListingDetailsScreen(driver);
+        listingDetails.openNote();
 
         LoginScreen loginScreen = new LoginScreen(driver);
         loginScreen.logIn("mariia.galperina@trademe.co.nz", "BumbleBee");
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("nz.co.trademe.property.uat:id/moreImageView")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("nz.co.trademe.property.uat:id/note_edittext")));
 
-        Assert.assertTrue(saleResults.isWLIconDisplayed());
+        listingDetails.createANote("test");
+        listingDetails.editANote(" for a note");
 
-        saleResults.goBackToDefault();
-        defaultSearch.goToWLTab();
-
-        TouchAction action = new TouchAction(driver);
-        action.longPress(driver.findElement(By.id("nz.co.trademe.property.uat:id/imageview_main"))).release().perform();
-
-        WatchlistScreen wlScreen = new WatchlistScreen(driver);
-        wlScreen.deleteFromWL();
-
-        Assert.assertTrue(wlScreen.isThereAnyPropertyWatchlisted());
-
+        Assert.assertTrue(listingDetails.isANoteSaved("test for a note"));
     }
+
 
     @After
     public void quit() {

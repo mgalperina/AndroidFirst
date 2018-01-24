@@ -1,5 +1,6 @@
 package nz.co.trademe.property.uat.Screens;
 
+import cucumber.api.java.en.And;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -19,12 +20,20 @@ public class ListingDetailsScreen {
     @AndroidFindBy(id = "nz.co.trademe.property.uat:id/fab")
     public MobileElement fabButton;
 
-
-
     @AndroidFindBy(accessibility = "Navigate up")
     public MobileElement backButtonListing;
 
+    @AndroidFindBy(id = "nz.co.trademe.property.uat:id/left_button_text")
+    public MobileElement addNoteButton;
 
+    @AndroidFindBy(id = "nz.co.trademe.property.uat:id/note_edittext")
+    public MobileElement noteFieldEditMode;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Save\")")
+    public MobileElement saveNoteButton;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Edit\")")
+    public MobileElement editANoteButton;
 
 
     public void addToWLviaFAB ()
@@ -35,6 +44,29 @@ public class ListingDetailsScreen {
     public void goBackToSearchResults()
     {
         backButtonListing.click();
+    }
+
+    public void openNote() { addNoteButton.click(); }
+
+    public void createANote(String testText)
+    {
+
+        noteFieldEditMode.sendKeys(testText);
+        saveNoteButton.click();
+    }
+
+    public void saveNote() {saveNoteButton.click(); }
+
+    public boolean isANoteSaved(String savedText)
+    {
+        return noteFieldEditMode.getText().toString().equals(savedText);
+    }
+
+    public void editANote(String additionalTextToANote)
+    {
+        editANoteButton.click();
+        noteFieldEditMode.sendKeys(additionalTextToANote);
+
     }
 
 }

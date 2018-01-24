@@ -17,16 +17,14 @@ import java.net.URL;
             cap.setCapability("platformName", "Android");
             //cap.setCapability("platformVersion", "7.0");
             //cap.setCapability("deviceName", "Galaxy S8");
-            cap.setCapability("deviceName", "Android Accelerated x86");
-            cap.setCapability("platformVersion", "6.0");
-            //cap.setCapability("deviceName", "Galaxy S6");
-            //cap.setCapability("platformVersion", "6.0.1");
+            //cap.setCapability("deviceName", "Android Accelerated x86");
+            //cap.setCapability("platformVersion", "6.0");
+            cap.setCapability("deviceName", "Galaxy S6");
+            cap.setCapability("platformVersion", "6.0.1");
             cap.setCapability("appPackage", "nz.co.trademe.property.uat");
             cap.setCapability("browserName", "");
             cap.setCapability("app", "/Users/mgalperina/Desktop/TestAutomation/APK/androidproperty-uat-2.0-uat.apk");
             return new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
 
         }
-
-
     }

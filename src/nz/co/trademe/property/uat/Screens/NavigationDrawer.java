@@ -40,7 +40,7 @@ public class NavigationDrawer {
     @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Favourites\")")
     public MobileElement favouritesButtonNavDrawer;
 
-    @AndroidFindBy(id = "")
+    @AndroidFindBy(id = "gcfkgfv")
     public MobileElement gmailSubject;
 
     public void openMyAccountToLogIn()

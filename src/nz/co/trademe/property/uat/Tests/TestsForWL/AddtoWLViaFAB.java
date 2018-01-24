@@ -10,6 +10,9 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 
@@ -30,6 +33,9 @@ public class AddtoWLViaFAB {
         SearchForSaleScreen defaultSearch = new SearchForSaleScreen(driver);
         defaultSearch.clickButtonSearch();
 
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("nz.co.trademe.property.uat:id/moreImageView")));
+
         SaleResultsScreen saleResults = new SaleResultsScreen(driver);
         saleResults.openFirstListing();
 
@@ -38,6 +44,8 @@ public class AddtoWLViaFAB {
 
         LoginScreen loginScreen = new LoginScreen(driver);
         loginScreen.logIn("mariia.galperina@trademe.co.nz", "BumbleBee");
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("nz.co.trademe.property.uat:id/fab")));
 
         listingDetails.goBackToSearchResults();
 

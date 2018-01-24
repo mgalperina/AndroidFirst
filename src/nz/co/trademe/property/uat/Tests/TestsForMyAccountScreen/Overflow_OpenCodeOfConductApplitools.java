@@ -15,7 +15,7 @@ import org.junit.Test;
 import java.awt.image.BufferedImage;
 import java.net.MalformedURLException;
 
-public class Overflow_OpenCodeOfConduct {
+public class Overflow_OpenCodeOfConductApplitools {
 
     AppiumDriver driver;
     Eyes eyes = new Eyes();
